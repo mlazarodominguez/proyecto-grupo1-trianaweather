@@ -32,7 +32,8 @@ db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', () => {
     console.log('Conectado!');
 });
-
+usuarioService.cargarUsuarios();
+datosService.cargarDatos();
 passport.use(new LocalStrategy((username, password, done) => {
     let busqueda = (username.includes('@')) ? { email: username } : { username: username };
     //let data = UserService.findUser(busqueda);

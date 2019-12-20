@@ -6,6 +6,7 @@ const _ = require('lodash');
 const DatoMeteorologico = require('../models/datos');
 const Estacion = require('../models/estacion')
 const User = require('../models/user')
+const moment = require('moment')
 
 module.exports = {
 
@@ -126,22 +127,19 @@ module.exports = {
     
         
     },
-    getTodosToday: async (req, res) => {
-
+   getTodosToday: async (req, res) => {
         try {
-            const moment = require('moment')
-
             const today = moment().startOf('day')
-
-            datoMeteorologico.find({
+            let datos=DatoMeteorologico.find({
             createdAt: {
             $gte: today.toDate(),
-            $lte: moment(today).endOf('day').toDate()
+            $lte: JSON.stringify(moment(today).endOf('day').toDate())
          }
-        })
+        });
+        res.send(200,datos);
         } catch (error) {
             res.send(500, error.message);
         }
 
-}
-}
+} 
+} 

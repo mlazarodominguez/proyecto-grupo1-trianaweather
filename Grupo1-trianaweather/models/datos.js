@@ -11,7 +11,7 @@ const datosSchema = new mongoose.Schema({
     calidadAire: Number,
     presion: Number,
     date: {type:Date, default: Date.now()},
-    id_Estacion: [{type: mongoose.Schema.ObjectId, ref:'Estacion'}]
+    id_Estacion: [{type: mongoose.Schema.Types.ObjectId, ref:'Estacion'}]
 });
 
 module.exports = mongoose.model('Datos', datosSchema);
